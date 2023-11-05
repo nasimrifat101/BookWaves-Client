@@ -49,11 +49,12 @@ export const router = createBrowserRouter([
         },
         {
             path: '/read/:id',
-            element:<ReadBook></ReadBook>
+            element:<PrivateRoute><ReadBook></ReadBook></PrivateRoute>
         },
         {
             path: '/bookupdate/:id',
-            element:<BooksUpdate></BooksUpdate>
+            element:<PrivateRoute><BooksUpdate></BooksUpdate></PrivateRoute>,
+            loader : ({params}) => fetch(`http://localhost:5000/book/detail/${params.id}`)
         },
         {
             path: '/borrowedbooks',

@@ -5,6 +5,7 @@ import "react-toastify/dist/ReactToastify.css";
 import ReactRating from "react-rating";
 import { FaStar } from "react-icons/fa";
 import AddBookBanner from "./Banners/AddBookBanner";
+import axios from "axios";
 
 const AddBook = () => {
   const [rating, setRating] = useState(0);
@@ -18,6 +19,7 @@ const AddBook = () => {
     const category = form.category.value;
     const quantity = form.quantity.value;
     const description = form.description.value;
+    const content = form.content.value;
 
     const product = {
       image,
@@ -26,26 +28,29 @@ const AddBook = () => {
       category,
       quantity,
       description,
+      content,
       rating: rating,
     };
     console.log(product);
 
-    // fetch(
-    //   "https://luminary-labs-server-bl6h611nx-nasimrifat101.vercel.app/phones",
-    //   {
-    //     method: "post",
-    //     headers: {
-    //       "content-type": "application/json",
-    //     },
-    //     body: JSON.stringify(product),
-    //   }
-    // )
-    //   .then((res) => res.json())
-    //   .then((data) => {
-    //     console.log(data);
-    //     toast.success("Product added successfully!");
-    //     form.reset();
-    //   });
+   
+
+    axios.post(`http://localhost:5000/books`, product, {
+      headers:{
+        'content-type' : 'application/json'
+      }
+    })
+    .then(res=>{
+      console.log(res.data)
+      if(res.data.insertedId){
+        toast.success('Book added successfully')
+      }
+    })
+    .catch(error=> {
+      console.log(error)
+      toast.error('Something Went Wrong')
+    })
+
   };
   return (
     <div>
@@ -138,6 +143,19 @@ const AddBook = () => {
                       type="text"
                       placeholder="Short Description"
                       name="description"
+                      className="input input-bordered"
+                      required
+                    />
+                  </div>
+                  {/* flex */}
+                  <div className="form-control">
+                    <label className="label">
+                      <span className="label-text">Content</span>
+                    </label>
+                    <textarea
+                      type="text"
+                      placeholder="Story from the book"
+                      name="content"
                       className="input input-bordered"
                       required
                     />

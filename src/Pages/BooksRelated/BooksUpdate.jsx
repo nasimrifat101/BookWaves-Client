@@ -4,9 +4,14 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import ReactRating from "react-rating";
 import { FaStar } from "react-icons/fa";
+import { useLoaderData, useParams } from "react-router-dom";
+import axios from "axios";
 
 const BooksUpdate = () => {
   const [rating, setRating] = useState(0);
+  const book = useLoaderData();
+
+  const {_id ,image, name, author, category, quantity } = book;
 
   const Addinput = (e) => {
     e.preventDefault();
@@ -26,6 +31,26 @@ const BooksUpdate = () => {
       rating: rating,
     };
     console.log(product);
+
+    axios.put(`http://localhost:5000/book/${_id}`, product, {
+        headers:{
+            'content-type':'application/json'
+        }
+    })
+    .then(res=>{
+        console.log(res.data)
+        if(res.data.modifiedCount){
+            toast.success('Book Updated Successfully')
+        }
+        else{
+            toast.warn('Something is Wrong')
+        }
+    })
+    .catch(error=>{
+        console.log(error)
+    })
+
+
   };
   return (
     <div>
@@ -48,7 +73,7 @@ const BooksUpdate = () => {
                     </label>
                     <input
                       type="text"
-                      placeholder="Image URL"
+                      defaultValue={image}
                       name="image"
                       className="input input-bordered "
                       required
@@ -62,7 +87,7 @@ const BooksUpdate = () => {
                       </label>
                       <input
                         type="text"
-                        placeholder="Book Name"
+                        defaultValue={name}
                         name="name"
                         className="input input-bordered"
                         required
@@ -74,7 +99,7 @@ const BooksUpdate = () => {
                       </label>
                       <input
                         type="text"
-                        placeholder="Author Name"
+                        defaultValue={author}
                         name="author"
                         className="input input-bordered"
                         required
@@ -89,6 +114,7 @@ const BooksUpdate = () => {
                       </label>
                       <select
                         name="category"
+                        defaultValue={category}
                         className="select select-bordered w-[225px]"
                         required
                       >
@@ -110,7 +136,7 @@ const BooksUpdate = () => {
                       </label>
                       <input
                         type="number"
-                        placeholder="Quantity of the book"
+                        defaultValue={quantity}
                         name="quantity"
                         className="input input-bordered"
                         required
