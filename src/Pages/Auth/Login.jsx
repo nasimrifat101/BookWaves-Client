@@ -1,12 +1,9 @@
 /* eslint-disable react/no-unescaped-entities */
 import { Link, useLocation, useNavigate } from "react-router-dom";
-
 import { useContext } from "react";
-
 import { ToastContainer, toast } from "react-toastify";
-import { BsGoogle } from "react-icons/bs";
-import Navbar from "../Navbar/Navbar";
 import { AuthContext } from "../../Routes/AuthProvider";
+import { BsGoogle } from "react-icons/bs";
 
 const Login = () => {
   const location = useLocation();
@@ -35,8 +32,6 @@ const Login = () => {
 
   return (
     <div>
-      <Navbar></Navbar>
-     
       <div className="flex flex-col bg-white">
         <div className="grid place-items-center">
         <div className="">

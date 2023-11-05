@@ -2,7 +2,6 @@ import { useContext, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../../Routes/AuthProvider";
 
-
 const Navbar = () => {
   const [showOptions, setShowOptions] = useState(false);
 
@@ -24,7 +23,18 @@ const Navbar = () => {
           <span className="font-semibold">Home</span>
         </NavLink>
       </li>
-      {user && (
+      <li>
+        <NavLink
+          className={({ isActive, isPending }) =>
+            isPending ? "pending" : isActive ? "text-[#4aed8b] underline" : ""
+          }
+          to="/allbooks"
+        >
+          <span className="font-semibold">All Book</span>
+        </NavLink>
+      </li>
+
+      {/* {user && (
         <li>
           <NavLink
             className={({ isActive, isPending }) =>
@@ -35,16 +45,16 @@ const Navbar = () => {
             <span className="font-semibold">Add Book</span>
           </NavLink>
         </li>
-      )}
-      {user && (
+      )} */}
+      {user && user.email === "a@gmail.com" && (
         <li>
           <NavLink
             className={({ isActive, isPending }) =>
               isPending ? "pending" : isActive ? "text-[#4aed8b] underline" : ""
             }
-            to="/allbooks"
+            to="/addbook"
           >
-            <span className="font-semibold">All Book</span>
+            <span className="font-semibold">Add Book</span>
           </NavLink>
         </li>
       )}
@@ -91,10 +101,7 @@ const Navbar = () => {
               {navlinks}
             </ul>
           </div>
-          <Link
-            to="/"
-            className="lg:text-xl font-bold text-[#163A1E]"
-          >
+          <Link to="/" className="lg:text-xl font-bold text-[#163A1E]">
             BookWaves
           </Link>
         </div>
@@ -117,7 +124,7 @@ const Navbar = () => {
                 )}
               </div>
               {showOptions && (
-                <div className="absolute right-0 mt-2 p-2 bg-white border rounded shadow">
+                <div className="absolute right-0 mt-2 p-2 bg-white border rounded shadow z-10">
                   <div
                     className="cursor-pointer hover:text-blue-500 font-semibold"
                     onClick={handleUserClick}

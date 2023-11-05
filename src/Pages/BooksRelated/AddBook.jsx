@@ -1,6 +1,5 @@
 /* eslint-disable no-unused-vars */
 import { useState } from "react";
-import Navbar from "../Navbar/Navbar";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import ReactRating from "react-rating";
@@ -50,7 +49,6 @@ const AddBook = () => {
   };
   return (
     <div>
-      <Navbar></Navbar>
       <AddBookBanner></AddBookBanner>
       <div className="max-w-6xl mx-auto grid lg:grid-cols-2">
         <div>

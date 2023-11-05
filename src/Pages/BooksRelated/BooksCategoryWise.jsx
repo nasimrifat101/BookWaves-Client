@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import Navbar from "../Navbar/Navbar";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import BooksCard from "./CardRelated/BooksCard";
@@ -19,7 +18,6 @@ const BooksCategoryWise = () => {
   }, [category]);
   return (
     <div>
-      <Navbar></Navbar>
       {loading ? (
         <LoadingPage></LoadingPage>
       ) : (

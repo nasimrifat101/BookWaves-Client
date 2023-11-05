@@ -8,7 +8,7 @@ const FeatureCard = ({ card }) => {
     <div className="hover:shadow-2xl">
       <img src={image} alt=""  className="rounded-t-2xl"/>
       <Link to={`/books/${category}`}>
-        <button className="btn btn-accent w-full rounded-t-none rounded-b-xl ">See Books</button>
+        <button className="btn btn-accent w-full rounded-t-none rounded-b-xl hover:text-white hover:bg-black ">See Books</button>
       </Link>
     </div>
   );

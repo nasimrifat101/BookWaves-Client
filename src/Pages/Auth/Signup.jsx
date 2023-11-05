@@ -11,7 +11,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { getDownloadURL, uploadBytes, ref } from "firebase/storage";
 import { BsGoogle } from "react-icons/bs";
 import { AuthContext } from "../../Routes/AuthProvider";
-import Navbar from "../Navbar/Navbar";
+
 import { storage } from "../../Firebase/firebase.config";
 
 const Signup = () => {
@@ -67,7 +67,6 @@ const Signup = () => {
 
   return (
     <div>
-      <Navbar></Navbar>
       <div className="">
         <div className="bg-white">
          
