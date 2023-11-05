@@ -4,11 +4,14 @@ import { useContext, useEffect, useState } from "react";
 import Rating from "react-rating";
 import { Link, useParams } from "react-router-dom";
 import { AuthContext } from "../../Routes/AuthProvider";
+import { ToastContainer, toast } from "react-toastify";
 
 const BookDetails = () => {
   const { user } = useContext(AuthContext);
   const { id } = useParams();
   const [details, setDetails] = useState({});
+
+
   useEffect(() => {
     axios.get(`http://localhost:5000/book/detail/${id}`).then((res) => {
       setDetails(res.data);
@@ -18,21 +21,56 @@ const BookDetails = () => {
 
   const { name, image, quantity, author, rating, category, description } =
     details;
-
-  const handleModal = (e) => {
-    e.preventDefault();
-    const form = e.target;
-    const date = form.date.value;
-    const name = user.displayName;
-    const email = user.email;
-    const product = details;
-
-    const borrow = { date, name, email, product };
-    console.log(borrow);
-    // post method here
-
-  };
-
+    const handleModal = (e) => {
+      e.preventDefault();
+      const form = e.target;
+      const date = form.date.value;
+      const name = user.displayName;
+      const email = user.email;
+      const product = details;
+    
+      const borrow = { date, name, email, product };
+    
+      axios
+        .post(`http://localhost:5000/borrow`, borrow, {
+          headers: {
+            'content-type': 'application/json',
+          },
+        })
+        .then((res) => {
+          if (res.data.insertedId) {
+            const updatedQuantity = details.quantity - 1;
+    
+            if (updatedQuantity >= 0) {
+              axios
+                .put(`http://localhost:5000/book/update/${details._id}`, {
+                  quantity: updatedQuantity,
+                })
+                .then((response) => {
+                  setDetails((prevDetails) => ({
+                    ...prevDetails,
+                    quantity: updatedQuantity,
+                  }));
+                  console.log(response.data);
+                  toast.success('Book Borrowed Successfully');
+                })
+                .catch((error) => {
+                  console.error(error);
+                  toast.error('Failed to update book quantity');
+                });
+            } else {
+              toast.error('This book is currently not available');
+            }
+    
+            const modal = document.getElementById('my_modal_7');
+            modal.checked = false;
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+          toast.error('Already Borrowed');
+        });
+    };
   return (
     <div className="grid grid-cols-2 max-w-6xl gap-4 mx-auto">
       <div>
@@ -125,6 +163,7 @@ const BookDetails = () => {
           Read
         </Link>
       </div>
+      <ToastContainer/>
     </div>
   );
 };
