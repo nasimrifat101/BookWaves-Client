@@ -4,22 +4,22 @@ import { ToastContainer, toast } from "react-toastify";
 import BorrowongBanner from "./Banners/BorrowongBanner";
 import LoadingPage from "../ErrorPages/LoadingPage";
 import useAuth from "../../Hooks/useAuth";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
 
 const BorrowedBooks = () => {
   const { user } = useAuth()
   const [borrowedBooks, setBorrowedBooks] = useState([]);
   const [isLoading, setLoading] = useState(true);
+  const axiosSecure = useAxiosSecure();
 
   useEffect(() => {
-    axios
-      .get(`http://localhost:5000/borrowing?email=${user?.email}`, {
-        withCredentials: true,
-      })
+    axiosSecure
+      .get(`/borrowing?email=${user?.email}`)
       .then((res) => {
         setBorrowedBooks(res.data);
         setLoading(false);
       });
-  }, [user?.email]);
+  }, [axiosSecure, user?.email]);
 
   // for deleting from borrowing database
   const handleReturn = (bookId) => {
