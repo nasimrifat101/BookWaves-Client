@@ -1,15 +1,18 @@
 /* eslint-disable react/prop-types */
 
+import { useContext } from "react";
 import Rating from "react-rating";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../../Routes/AuthProvider";
 
 const BooksCard = ({ book }) => {
+  const {user} = useContext(AuthContext)
   const { _id, image, name, rating, author, category } = book;
   return (
     <div>
       <div className="card card-compact hover:shadow-xl border">
         <figure>
-          <img src={image} alt="Books Cover" className=" p-2 rounded-2xl" />
+          <img src={image} alt="Books Cover" className=" p-2 rounded-2xl h-[345px]" />
         </figure>
         <div className="card-body">
           <h2 className="font-bold text-md">{name}</h2>
@@ -35,6 +38,15 @@ const BooksCard = ({ book }) => {
             >
               Details
             </Link>
+            {
+              user && user.email === 'a@gmail.com' &&
+              <Link
+              to={`/bookupdate/${_id}`}
+              className="btn bg-accent w-full hover:text-white hover:bg-black"
+            >
+              update
+            </Link>
+            }
           </div>
         </div>
       </div>

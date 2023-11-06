@@ -12,7 +12,7 @@ const AllBooksCard = ({ book }) => {
     <div>
       <div className="card card-compact hover:shadow-xl border">
         <figure>
-          <img src={image} alt="Books Cover" className=" p-2 rounded-2xl" />
+          <img src={image} alt="Books Cover" className=" p-2 rounded-2xl h-[345px]" />
         </figure>
         <div className="card-body">
           <h2 className="text-md font-bold">{name}</h2>
