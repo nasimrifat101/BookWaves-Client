@@ -34,7 +34,7 @@ const BooksCard = ({ book }) => {
           <div className="card-actions justify-end">
             <Link
               to={`/bookdetails/${_id}`}
-              className="btn bg-accent w-full hover:text-white hover:bg-black"
+              className="btn bg-accent w-full border-none hover:text-white hover:bg-black"
             >
               Details
             </Link>
@@ -42,7 +42,7 @@ const BooksCard = ({ book }) => {
               user && user.email === 'a@gmail.com' &&
               <Link
               to={`/bookupdate/${_id}`}
-              className="btn bg-accent w-full hover:text-white hover:bg-black"
+              className="btn bg-accent w-full border-none hover:text-white hover:bg-black"
             >
               update
             </Link>

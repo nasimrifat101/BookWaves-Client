@@ -3,19 +3,25 @@ import axios from "axios";
 import { AuthContext } from "../../Routes/AuthProvider";
 import { ToastContainer, toast } from "react-toastify";
 import BorrowongBanner from "./Banners/BorrowongBanner";
+import LoadingPage from "../ErrorPages/LoadingPage";
 
 const BorrowedBooks = () => {
   const { user } = useContext(AuthContext);
   const [borrowedBooks, setBorrowedBooks] = useState([]);
+  const [isLoading, setLoading] = useState(true);
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/borrowing?email=${user?.email}`)
+      .get(`http://localhost:5000/borrowing?email=${user?.email}`, {
+        withCredentials: true,
+      })
       .then((res) => {
         setBorrowedBooks(res.data);
+        setLoading(false);
       });
   }, [user?.email]);
 
+  // for deleting from borrowing database
   const handleReturn = (bookId) => {
     axios
       .delete(`http://localhost:5000/borrowing/${bookId}`)
@@ -32,9 +38,18 @@ const BorrowedBooks = () => {
       });
   };
 
+  // for adding back to quantity
+  const handleInc = (productId) => {
+    axios.put(`http://localhost:5000/books/inc/${productId}`).then((res) => {
+      console.log(res.data);
+    });
+  };
+
   return (
     <div className="overflow-x-auto max-w-6xl mx-auto">
-      {borrowedBooks.length === 0 ? (
+      {isLoading ? (
+        <LoadingPage></LoadingPage>
+      ) : borrowedBooks.length === 0 ? (
         <BorrowongBanner></BorrowongBanner>
       ) : (
         <table className="table">
@@ -84,7 +99,10 @@ const BorrowedBooks = () => {
                 <th>
                   <button
                     className="btn btn-error hover:text-white hover:bg-black border-none"
-                    onClick={() => handleReturn(book._id)}
+                    onClick={() => {
+                      handleReturn(book._id);
+                      handleInc(book.product._id);
+                    }}
                   >
                     Return
                   </button>
