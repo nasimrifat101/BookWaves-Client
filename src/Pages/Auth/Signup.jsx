@@ -2,20 +2,15 @@
 /* eslint-disable react/no-unescaped-entities */
 
 import { Link, useNavigate } from "react-router-dom";
-
-import { useContext } from "react";
-
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
 import { getDownloadURL, uploadBytes, ref } from "firebase/storage";
 import { BsGoogle } from "react-icons/bs";
-import { AuthContext } from "../../Routes/AuthProvider";
-
 import { storage } from "../../Firebase/firebase.config";
+import useAuth from "../../Hooks/useAuth";
 
 const Signup = () => {
-  const { createAccount, updateUserProfile, googleLogin } = useContext(AuthContext);
+  const { createAccount, updateUserProfile, googleLogin } = useAuth();
   const storageRef = ref(storage, "photo");
   const navigate = useNavigate();
 

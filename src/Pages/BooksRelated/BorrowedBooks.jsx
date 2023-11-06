@@ -1,12 +1,12 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
-import { AuthContext } from "../../Routes/AuthProvider";
 import { ToastContainer, toast } from "react-toastify";
 import BorrowongBanner from "./Banners/BorrowongBanner";
 import LoadingPage from "../ErrorPages/LoadingPage";
+import useAuth from "../../Hooks/useAuth";
 
 const BorrowedBooks = () => {
-  const { user } = useContext(AuthContext);
+  const { user } = useAuth()
   const [borrowedBooks, setBorrowedBooks] = useState([]);
   const [isLoading, setLoading] = useState(true);
 

@@ -1,6 +1,6 @@
-import { useContext, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
-import { AuthContext } from "../../Routes/AuthProvider";
+import useAuth from "../../Hooks/useAuth";
+import { useState } from "react";
 
 const Navbar = () => {
   const [showOptions, setShowOptions] = useState(false);
@@ -9,7 +9,7 @@ const Navbar = () => {
     setShowOptions(!showOptions);
   };
 
-  const { user, logOut } = useContext(AuthContext);
+  const { user, logOut } = useAuth();
 
   const navlinks = (
     <>
@@ -33,19 +33,6 @@ const Navbar = () => {
           <span className="font-semibold">All Book</span>
         </NavLink>
       </li>
-
-      {/* {user && (
-        <li>
-          <NavLink
-            className={({ isActive, isPending }) =>
-              isPending ? "pending" : isActive ? "text-[#4aed8b] underline" : ""
-            }
-            to="/addbook"
-          >
-            <span className="font-semibold">Add Book</span>
-          </NavLink>
-        </li>
-      )} */}
       {user && user.email === "a@gmail.com" && (
         <li>
           <NavLink

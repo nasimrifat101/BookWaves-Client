@@ -1,14 +1,13 @@
 /* eslint-disable react/no-unescaped-entities */
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { useContext } from "react";
 import { ToastContainer, toast } from "react-toastify";
-import { AuthContext } from "../../Routes/AuthProvider";
 import { BsGoogle } from "react-icons/bs";
+import useAuth from "../../Hooks/useAuth";
 
 const Login = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const { loginUser, googleLogin } = useContext(AuthContext);
+  const { loginUser, googleLogin } = useAuth();
 
   const handleLogin = (e) => {
     e.preventDefault();

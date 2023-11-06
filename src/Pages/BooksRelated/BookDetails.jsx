@@ -5,9 +5,10 @@ import Rating from "react-rating";
 import { Link, useParams } from "react-router-dom";
 import { AuthContext } from "../../Routes/AuthProvider";
 import { ToastContainer, toast } from "react-toastify";
+import useAuth from "../../Hooks/useAuth";
 
 const BookDetails = () => {
-  const { user } = useContext(AuthContext);
+  const { user } = useAuth();
   const { id } = useParams();
   const [details, setDetails] = useState({});
 

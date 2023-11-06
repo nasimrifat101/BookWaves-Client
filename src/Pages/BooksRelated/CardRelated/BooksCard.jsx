@@ -1,12 +1,10 @@
-/* eslint-disable react/prop-types */
-
-import { useContext } from "react";
 import Rating from "react-rating";
 import { Link } from "react-router-dom";
-import { AuthContext } from "../../../Routes/AuthProvider";
+import useAuth from "../../../Hooks/useAuth";
+import PropTypes from 'prop-types';
 
 const BooksCard = ({ book }) => {
-  const {user} = useContext(AuthContext)
+  const {user} = useAuth()
   const { _id, image, name, rating, author, category } = book;
   return (
     <div>
@@ -53,5 +51,17 @@ const BooksCard = ({ book }) => {
     </div>
   );
 };
+
+BooksCard.propTypes = {
+  book: PropTypes.shape({
+    _id: PropTypes.string.isRequired,
+    image: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    rating: PropTypes.number.isRequired,
+    author: PropTypes.string.isRequired,
+    category: PropTypes.string.isRequired,
+  }).isRequired,
+};
+
 
 export default BooksCard;
