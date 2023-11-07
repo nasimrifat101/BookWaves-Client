@@ -3,9 +3,12 @@ import AllBooksCard from "./CardRelated/AllBooksCard";
 import LoadingPage from "../ErrorPages/LoadingPage";
 import useAxiosNormal from "../../Hooks/useAxiosNormal";
 import { ToastContainer, toast } from "react-toastify";
+import SearchBar from "./Banners/SearchBar";
 
 const AllBooks = () => {
   const [books, setBooks] = useState([]);
+  const [filteredBooks, setFilteredBooks] = useState([]);
+  const [search, setSearch] = useState("");
   const [isLoading, setLoading] = useState(true);
   const axiosNormal = useAxiosNormal();
 
@@ -16,11 +19,22 @@ const AllBooks = () => {
     });
   }, [axiosNormal]);
 
+  useEffect(() => {
+    if (search && books.length > 0) {
+      const filtered = books.filter((book) =>
+        book.name.toLowerCase().includes(search.toLowerCase())
+      );
+      setFilteredBooks(filtered);
+    } else {
+      // If search term is empty, show all books
+      setFilteredBooks(books);
+    }
+  }, [books, search]);
 
   const handleDelete = async (id) => {
     try {
       await axiosNormal.delete(`/delete/book/${id}`);
-      setBooks(books.filter(book => book._id !== id));
+      setBooks(books.filter((book) => book._id !== id));
     } catch (error) {
       console.error(error);
       toast.error(`Book couldn't be deleted`);
@@ -31,10 +45,17 @@ const AllBooks = () => {
       {isLoading ? (
         <LoadingPage></LoadingPage>
       ) : (
-        <div className="max-w-6xl mx-auto grid grid-cols-4 gap-4">
-          {books.map((book) => (
-            <AllBooksCard key={book._id} book={book} onDelete={handleDelete}></AllBooksCard>
-          ))}
+        <div className="max-w-6xl mx-auto">
+          <SearchBar searchTerm={search} onSearchChange={setSearch} />
+          <div className=" grid grid-cols-4 gap-4">
+            {filteredBooks.map((book) => (
+              <AllBooksCard
+                key={book._id}
+                book={book}
+                onDelete={handleDelete}
+              ></AllBooksCard>
+            ))}
+          </div>
         </div>
       )}
       <ToastContainer></ToastContainer>
