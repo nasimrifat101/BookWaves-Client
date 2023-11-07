@@ -1,14 +1,15 @@
 import Banner from "./Components/Banner";
+import FeatureBooks from "./Components/FeatureBooks";
 import FeatureSection from "./Components/FeatureSection";
 import Footer from "./Components/Footer";
-import Services from "./Components/Services";
+
 
 const Home = () => {
     return (
         <div>           
             <Banner></Banner>
             <FeatureSection></FeatureSection>
-            <Services></Services>
+            <FeatureBooks></FeatureBooks>
             <Footer></Footer>
         </div>
     );
