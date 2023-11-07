@@ -1,21 +1,22 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
 import { useParams } from "react-router-dom";
 import BooksCard from "./CardRelated/BooksCard";
 import LoadingPage from "../ErrorPages/LoadingPage";
+import useAxiosNormal from "../../Hooks/useAxiosNormal";
 
 const BooksCategoryWise = () => {
   const { category } = useParams();
   const [books, setBooks] = useState([]);
   const [loading, setLoading] = useState(true);
+  const axiosNormal = useAxiosNormal();
 
   useEffect(() => {
-    axios.get(`http://localhost:5000/book/${category}`).then((res) => {
+    axiosNormal.get(`/book/${category}`).then((res) => {
       setBooks(res.data);
       console.log(res.data);
       setLoading(false);
     });
-  }, [category]);
+  }, [category,axiosNormal]);
   return (
     <div>
       {loading ? (

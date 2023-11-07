@@ -1,14 +1,15 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
 import FeatureCard from "./CardsSection/FeatureCard";
+import useAxiosNormal from "../../../Hooks/useAxiosNormal";
 
 const FeatureSection = () => {
   const [cards, setCards] = useState([]);
+  const axiosNormal = useAxiosNormal()
   useEffect(() => {
-    axios.get("http://localhost:5000/brands").then((res) => {
+    axiosNormal.get("/brands").then((res) => {
       setCards(res.data);
     });
-  }, []);
+  }, [axiosNormal]);
   return (
     <div className="bg-[#eefaf1] rounded-xl">
       <div className="max-w-6xl mx-auto py-10">

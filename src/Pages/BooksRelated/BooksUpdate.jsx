@@ -6,10 +6,12 @@ import ReactRating from "react-rating";
 import { FaStar } from "react-icons/fa";
 import { useLoaderData, useParams } from "react-router-dom";
 import axios from "axios";
+import useAxiosNormal from "../../Hooks/useAxiosNormal";
 
 const BooksUpdate = () => {
   const [rating, setRating] = useState(0);
   const book = useLoaderData();
+  const axiosNormal = useAxiosNormal();
 
   const {_id ,image, name, author, category, quantity } = book;
 
@@ -32,7 +34,7 @@ const BooksUpdate = () => {
     };
     console.log(product);
 
-    axios.put(`http://localhost:5000/book/${_id}`, product, {
+    axiosNormal.put(`/book/${_id}`, product, {
         headers:{
             'content-type':'application/json'
         }

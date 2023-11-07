@@ -1,17 +1,18 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import useAxiosNormal from "../../Hooks/useAxiosNormal";
 
 const ReadBook = () => {
     const {id} = useParams();
     const [details, setDetails] = useState({})
+    const axiosNormal = useAxiosNormal();
 
     useEffect(()=>{
-        axios.get(`http://localhost:5000/book/detail/${id}`).then((res) => {
+        axiosNormal.get(`/book/detail/${id}`).then((res) => {
       setDetails(res.data);
       console.log(res.data);
     });
-    },[id])
+    },[id, axiosNormal])
 
     const {name, content } = details;
 

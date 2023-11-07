@@ -6,18 +6,20 @@ import { Link, useParams } from "react-router-dom";
 import { AuthContext } from "../../Routes/AuthProvider";
 import { ToastContainer, toast } from "react-toastify";
 import useAuth from "../../Hooks/useAuth";
+import useAxiosNormal from "../../Hooks/useAxiosNormal";
 
 const BookDetails = () => {
   const { user } = useAuth();
   const { id } = useParams();
   const [details, setDetails] = useState({});
+  const axiosNormal = useAxiosNormal();
 
   useEffect(() => {
-    axios.get(`http://localhost:5000/book/detail/${id}`).then((res) => {
+    axiosNormal.get(`/book/detail/${id}`).then((res) => {
       setDetails(res.data);
       console.log(res.data);
     });
-  }, [id]);
+  }, [id, axiosNormal]);
 
   const { name, image, quantity, author, rating, category, description } =
     details;

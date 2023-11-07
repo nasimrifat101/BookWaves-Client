@@ -1,16 +1,17 @@
 import { useState, useEffect } from "react";
-import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import BorrowongBanner from "./Banners/BorrowongBanner";
 import LoadingPage from "../ErrorPages/LoadingPage";
 import useAuth from "../../Hooks/useAuth";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
+import useAxiosNormal from "../../Hooks/useAxiosNormal";
 
 const BorrowedBooks = () => {
   const { user } = useAuth()
   const [borrowedBooks, setBorrowedBooks] = useState([]);
   const [isLoading, setLoading] = useState(true);
   const axiosSecure = useAxiosSecure();
+  const axiosNormal = useAxiosNormal();
 
   useEffect(() => {
     axiosSecure
@@ -23,8 +24,8 @@ const BorrowedBooks = () => {
 
   // for deleting from borrowing database
   const handleReturn = (bookId) => {
-    axios
-      .delete(`http://localhost:5000/borrowing/${bookId}`)
+    axiosNormal
+      .delete(`/borrowing/${bookId}`)
       .then((res) => {
         console.log("Book returned successfully!", res.data);
         toast.success("Book returned Successfully");
@@ -40,7 +41,7 @@ const BorrowedBooks = () => {
 
   // for adding back to quantity
   const handleInc = (productId) => {
-    axios.put(`http://localhost:5000/books/inc/${productId}`).then((res) => {
+    axiosNormal.put(`/books/inc/${productId}`).then((res) => {
       console.log(res.data);
     });
   };

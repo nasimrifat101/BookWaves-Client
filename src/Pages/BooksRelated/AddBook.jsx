@@ -6,9 +6,11 @@ import ReactRating from "react-rating";
 import { FaStar } from "react-icons/fa";
 import AddBookBanner from "./Banners/AddBookBanner";
 import axios from "axios";
+import useAxiosNormal from "../../Hooks/useAxiosNormal";
 
 const AddBook = () => {
   const [rating, setRating] = useState(0);
+  const axiosNormal = useAxiosNormal();
 
   const Addinput = (e) => {
     e.preventDefault();
@@ -35,7 +37,7 @@ const AddBook = () => {
 
    
 
-    axios.post(`http://localhost:5000/books`, product, {
+    axiosNormal.post(`/books`, product, {
       headers:{
         'content-type' : 'application/json'
       }

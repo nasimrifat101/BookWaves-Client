@@ -1,18 +1,19 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
 import AllBooksCard from "./CardRelated/AllBooksCard";
 import LoadingPage from "../ErrorPages/LoadingPage";
+import useAxiosNormal from "../../Hooks/useAxiosNormal";
 
 const AllBooks = () => {
   const [books, setBooks] = useState([]);
   const [isLoading, setLoading] = useState(true);
+  const axiosNormal = useAxiosNormal();
 
   useEffect(() => {
-    axios.get("http://localhost:5000/books").then((res) => {
+    axiosNormal.get("/books").then((res) => {
       setBooks(res.data);
       setLoading(false);
     });
-  }, []);
+  }, [axiosNormal]);
   return (
     <div>
       {isLoading ? (
