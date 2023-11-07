@@ -33,7 +33,7 @@ const AllBooksCard = ({ book, onDelete }) => {
           <img
             src={image}
             alt="Books Cover"
-            className=" p-2 rounded-2xl h-[345px]"
+            className=" p-2 rounded-2xl lg:h-[345px]"
           />
         </figure>
         <div className="card-body">

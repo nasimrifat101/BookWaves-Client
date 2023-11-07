@@ -84,8 +84,8 @@ const BorrowedBooks = () => {
                       </div>
                     </div>
                     <div>
-                      <div className="font-bold">{book.product.name}</div>
-                      <div className="text-sm opacity-50">
+                      <div className="lg:font-bold">{book.product.name}</div>
+                      <div className="text-sm opacity-50 hidden lg;block">
                         {book.product.author}
                       </div>
                     </div>

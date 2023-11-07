@@ -75,18 +75,18 @@ const BookDetails = () => {
       });
   };
   return (
-    <div className="grid grid-cols-2 max-w-6xl gap-4 mx-auto">
+    <div className="grid lg:grid-cols-2 max-w-6xl gap-4 mx-auto">
       <div>
         <img src={image} alt="" className="w-full" />
       </div>
-      <div className="bg-green-100 p-10 space-y-3">
-        <h1 className="text-4xl font-bold">{name}</h1>
+      <div className="bg-green-100 p-3 lg:p-10 space-y-3">
+        <h1 className="text-2xl lg:text-4xl font-bold">{name}</h1>
         <div className="flex items-center">
-          <p className="text-xl font-semibold">{author}</p>
+          <p className="lg:text-xl font-semibold">{author}</p>
         </div>
-        <div className="flex items-center justify-between">
+        <div className="grid space-y-3 lg:space-y-0 lg:flex  lg:items-center lg:justify-between">
           <p>
-            Type: <span className="font-bold text-xl">{category}</span>
+            Type: <span className="font-bold lg:text-xl">{category}</span>
           </p>
           <p>
             Quantity: <span className="font-bold text-xl">{quantity}</span>
@@ -104,7 +104,7 @@ const BookDetails = () => {
         </div>
         <p>
           Description: <br />
-          <span className="text-md font-semibold">
+          <span className="text-md lg:font-semibold">
             {" "}
             {description}In the labyrinthine depths of a shifting reality, an
             elusive mansion stood, cloaked in perpetual twilight. Its walls

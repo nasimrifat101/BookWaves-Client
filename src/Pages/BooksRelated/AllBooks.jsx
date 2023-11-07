@@ -58,7 +58,7 @@ const AllBooks = () => {
             onSearchChange={setSearch}
             onFilterAvailableBooks={filterAvailableBooks}
           />
-          <div className=" grid grid-cols-4 gap-4">
+          <div className=" grid lg:grid-cols-4 gap-4 p-3 lg:p-0">
             {filteredBooks.map((book) => (
               <AllBooksCard
                 key={book._id}

@@ -4,7 +4,7 @@ const FeaBookCard = ({ book }) => {
   const { image } = book;
   return (
     <div>
-      <div className=" card card-compact hover:shadow-xl">
+      <div className=" card card-compact hover:shadow-lg">
         <figure>
           <img
             src={image}

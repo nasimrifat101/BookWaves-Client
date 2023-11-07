@@ -51,15 +51,15 @@ const ReadBook = () => {
       };
   
     return (
-      <div className="max-w-3xl mx-auto space-y-5 my-10">
-        <h1 className="text-4xl mt-10 font-bold">{name}</h1>
+      <div className="max-w-3xl mx-auto space-y-5 lg:my-10 px-4 lg:px-0">
+        <h1 className="text-4xl lg:mt-10 font-bold">{name}</h1>
   
         <div
           className="font-medium"
           dangerouslySetInnerHTML={{ __html: addLineBreaks(content) }}
         ></div>
   
-        <button className="btn btn-primary mt-4" onClick={generatePDF}>
+        <button className="btn btn-primary mb-10" onClick={generatePDF}>
           Download as PDF
         </button>
       </div>

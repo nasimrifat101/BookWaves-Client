@@ -19,10 +19,10 @@ const FeatureBooks = () => {
 
   return (
     <div className="max-w-6xl mx-auto my-10">
-    <h1 className="text-4xl font-bold mb-5">Exceptional Reads</h1>
-      <div className="grid grid-cols-7 gap-3">
+    <h1 className="text-2xl px-3 lg:px-0 lg:text-4xl font-bold mb-5">Exceptional Reads</h1>
+      <div className="grid grid-cols-2 px-2 lg:px-0 lg:grid-cols-7 gap-3">
         {slicedBooks.map((book, index) => (
-          <div key={index} className={index === 1 ? "col-span-2 row-span-2 border-2 border-green-100 rounded-xl" : ""}>
+          <div key={index} className={index === 1 ? "col-span-2 row-span-2 border border-green-200 rounded-xl" : ""}>
             <Link to={`/bookdetails/${book._id}`}>
               <FeaBookCard book={book}></FeaBookCard>
             </Link>
