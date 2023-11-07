@@ -14,7 +14,8 @@ const AllBooks = () => {
 
   useEffect(() => {
     axiosNormal.get("/books").then((res) => {
-      setBooks(res.data);
+      const randomizedBooks = res.data.sort(() => Math.random() - 0.5);
+      setBooks(randomizedBooks);
       setLoading(false);
     });
   }, [axiosNormal]);
@@ -22,7 +23,7 @@ const AllBooks = () => {
   const filterAvailableBooks = () => {
     const availableBooks = books.filter((book) => book.quantity > 0);
     setFilteredBooks(availableBooks);
-    console.log(availableBooks)
+    console.log(availableBooks);
   };
 
   useEffect(() => {

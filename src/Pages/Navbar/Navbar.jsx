@@ -119,7 +119,7 @@ const Navbar = () => {
                     {user.displayName}
                   </div>
                   <div
-                    className="cursor-pointer hover:text-blue-500 font-semibold btn"
+                    className="cursor-pointer hover:text-white hover:bg-black border-none font-semibold btn btn-error w-full"
                     onClick={logOut}
                   >
                     Logout
