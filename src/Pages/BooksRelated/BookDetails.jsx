@@ -34,8 +34,8 @@ const BookDetails = () => {
 
     const borrow = { date, name, email, product };
 
-    axios
-      .post(`http://localhost:5000/borrow`, borrow, {
+    axiosNormal
+      .post(`/borrow`, borrow, {
         headers: {
           "content-type": "application/json",
         },
@@ -45,8 +45,8 @@ const BookDetails = () => {
           const updatedQuantity = details.quantity - 1;
 
           if (updatedQuantity >= 0) {
-            axios
-              .put(`http://localhost:5000/book/update/${details._id}`, {
+            axiosNormal
+              .put(`/book/update/${details._id}`, {
                 quantity: updatedQuantity,
               })
               .then((response) => {

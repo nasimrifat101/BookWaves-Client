@@ -1,16 +1,40 @@
-import PropTypes from 'prop-types';
+/* eslint-disable react/prop-types */
+import PropTypes from "prop-types";
 import Rating from "react-rating";
 import { Link } from "react-router-dom";
 import useAuth from "../../../Hooks/useAuth";
+import { ToastContainer } from "react-toastify";
+import Swal from "sweetalert2";
 
-const AllBooksCard = ({ book }) => {
+const AllBooksCard = ({ book, onDelete }) => {
   const { user } = useAuth();
   const { _id, image, name, rating, author, category } = book;
+
+  const handleDeleteClick = () => {
+    Swal.fire({
+      title: "Do you want to delete this book?",
+      showDenyButton: true,
+      confirmButtonText: "Delete",
+      denyButtonText: "Cancel",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        onDelete(_id); // Call the onDelete function passed from the parent component
+        Swal.fire("Deleted!", "The book has been deleted.", "success");
+      } else if (result.isDenied) {
+        Swal.fire("Cancelled", "The book deletion has been cancelled.", "info");
+      }
+    });
+  };
+
   return (
     <div>
       <div className="card card-compact hover:shadow-xl border">
         <figure>
-          <img src={image} alt="Books Cover" className=" p-2 rounded-2xl h-[345px]" />
+          <img
+            src={image}
+            alt="Books Cover"
+            className=" p-2 rounded-2xl h-[345px]"
+          />
         </figure>
         <div className="card-body">
           <h2 className="text-md font-bold">{name}</h2>
@@ -44,9 +68,18 @@ const AllBooksCard = ({ book }) => {
                 Update Book
               </Link>
             )}
+            {user && user.email === `a@gmail.com` && (
+              <Link
+                onClick={handleDeleteClick}
+                className="btn bg-error w-full hover:text-white hover:bg-black"
+              >
+                Delete Book
+              </Link>
+            )}
           </div>
         </div>
       </div>
+      <ToastContainer />
     </div>
   );
 };
@@ -61,6 +94,5 @@ AllBooksCard.propTypes = {
     category: PropTypes.string.isRequired,
   }).isRequired,
 };
-
 
 export default AllBooksCard;

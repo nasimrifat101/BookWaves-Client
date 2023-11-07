@@ -54,7 +54,7 @@ export const router = createBrowserRouter([
         {
             path: '/bookupdate/:id',
             element:<PrivateRoute><BooksUpdate></BooksUpdate></PrivateRoute>,
-            loader : ({params}) => fetch(`http://localhost:5000/book/detail/${params.id}`)
+            // loader : ({params}) => fetch(`https://book-waves-server.vercel.app/detail/${params.id}`)
         },
         {
             path: '/borrowedbooks',

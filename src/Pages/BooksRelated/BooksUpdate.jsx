@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import ReactRating from "react-rating";
@@ -9,9 +9,16 @@ import axios from "axios";
 import useAxiosNormal from "../../Hooks/useAxiosNormal";
 
 const BooksUpdate = () => {
+  const {id} = useParams();
   const [rating, setRating] = useState(0);
-  const book = useLoaderData();
   const axiosNormal = useAxiosNormal();
+  const [book, setBooks] = useState({})
+  useEffect(()=>{
+    axiosNormal(`/book/detail/${id}`)
+    .then(res=>{
+      setBooks(res.data)
+    })
+  },[id, axiosNormal])
 
   const {_id ,image, name, author, category, quantity } = book;
 
