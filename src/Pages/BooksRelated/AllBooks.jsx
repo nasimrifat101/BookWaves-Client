@@ -19,6 +19,12 @@ const AllBooks = () => {
     });
   }, [axiosNormal]);
 
+  const filterAvailableBooks = () => {
+    const availableBooks = books.filter((book) => book.quantity > 0);
+    setFilteredBooks(availableBooks);
+    console.log(availableBooks)
+  };
+
   useEffect(() => {
     if (search && books.length > 0) {
       const filtered = books.filter((book) =>
@@ -46,7 +52,11 @@ const AllBooks = () => {
         <LoadingPage></LoadingPage>
       ) : (
         <div className="max-w-6xl mx-auto">
-          <SearchBar searchTerm={search} onSearchChange={setSearch} />
+          <SearchBar
+            searchTerm={search}
+            onSearchChange={setSearch}
+            onFilterAvailableBooks={filterAvailableBooks}
+          />
           <div className=" grid grid-cols-4 gap-4">
             {filteredBooks.map((book) => (
               <AllBooksCard
