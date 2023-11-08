@@ -12,7 +12,7 @@ const BannerSec = () => {
         />
       </div>
       <div>
-        <h1 className=" text-2xl mx-3 lg:mx-0 lg:text-5xl font-bold my-10 border-l-4 rounded-2xl pl-2 border-green-200">
+        <h1 className=" text-3xl mx-3 lg:mx-0 lg:text-5xl font-bold my-10 border-l-4 rounded-2xl pl-2 border-green-200">
           Become a <span className="text-green-400">member</span> today.
         </h1>
         <ol className="list-disc px-10 space-y-3">
