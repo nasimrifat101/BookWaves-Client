@@ -120,50 +120,56 @@ const BookDetails = () => {
             puzzle..............
           </span>
         </p>
-        {/* modal */}
-        {/* The button to open modal */}
-        <label
-          htmlFor="my_modal_7"
-          className="btn btn-accent w-full hover:text-white hover:bg-black"
-        >
-          Borrow
-        </label>
 
-        {/* Put this part before </body> tag */}
-        <input type="checkbox" id="my_modal_7" className="modal-toggle" />
-        <div className="modal">
-          <div className="modal-box">
-            <h3 className="font-bold text-lg text-center">
-              {" "}
-              When will you return the book?
-            </h3>
-            <form
-              onSubmit={handleModal}
-              action=""
-              className="flex flex-col items-center"
+        {quantity < 1 ? (
+          <button className="btn btn-disabled w-full">
+            Not Avaible to borrow
+          </button>
+        ) : (
+          <div>
+            <label
+              htmlFor="my_modal_7"
+              className="btn btn-accent w-full hover:text-white hover:bg-black"
             >
-              <div className="form-control w-full max-w-xs">
-                <label className="label"></label>
-                <div className="flex justify-center">
-                  <input
-                    type="date"
-                    name="date"
-                    placeholder="Type here"
-                    className="input input-bordered w-full max-w-xs"
-                  />
-                </div>
+              Borrow
+            </label>
+
+            <input type="checkbox" id="my_modal_7" className="modal-toggle" />
+            <div className="modal">
+              <div className="modal-box">
+                <h3 className="font-bold text-lg text-center">
+                  {" "}
+                  When will you return the book?
+                </h3>
+                <form
+                  onSubmit={handleModal}
+                  action=""
+                  className="flex flex-col items-center"
+                >
+                  <div className="form-control w-full max-w-xs">
+                    <label className="label"></label>
+                    <div className="flex justify-center">
+                      <input
+                        type="date"
+                        name="date"
+                        placeholder="Type here"
+                        className="input input-bordered w-full max-w-xs"
+                      />
+                    </div>
+                  </div>
+                  <div className="mt-4">
+                    <input
+                      className="btn btn-accent"
+                      type="submit"
+                      value="Submit"
+                    />
+                  </div>
+                </form>
               </div>
-              <div className="mt-4">
-                <input
-                  className="btn btn-accent"
-                  type="submit"
-                  value="Submit"
-                />
-              </div>
-            </form>
+              <label className="modal-backdrop" htmlFor="my_modal_7"></label>
+            </div>
           </div>
-          <label className="modal-backdrop" htmlFor="my_modal_7"></label>
-        </div>
+        )}
         <Link
           to={`/read/${id}`}
           className="btn btn-accent w-full hover:text-white hover:bg-black"

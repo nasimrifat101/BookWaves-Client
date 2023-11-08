@@ -23,7 +23,7 @@ const BooksCategoryWise = () => {
         <LoadingPage></LoadingPage>
       ) : (
         <div className="max-w-6xl mx-auto">
-          <div className="grid grid-cols-4 gap-5">
+          <div className="grid p-3 lg:p-0 lg:grid-cols-4 gap-5">
             {books.map((book) => (
               <BooksCard key={book._id} book={book}></BooksCard>
             ))}
