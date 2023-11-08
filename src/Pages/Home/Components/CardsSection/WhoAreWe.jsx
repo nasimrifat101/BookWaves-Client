@@ -11,12 +11,12 @@ const WhoAreWe = () => {
     });
   }, [axiosNormal]);
   return (
-    <div className=" my-10 py-10">
+    <div className=" my-10 lg:py-10">
       <div className="max-w-6xl mx-auto">
         <h1 className=" text-2xl px-3 lg:px-0 lg:text-4xl font-bold py-5">What We Offer </h1>
         <div className="grid p-2 lg:p-0 lg:grid-cols-3 gap-3">
           {services.map((item) => (
-            <div key={item.id} className="card border hover:shadow-xl">
+            <div key={item._id} className="card border hover:shadow-xl">
               <div className="card-body">
                 <div className="flex space-x-3">
                 <img src={item.img} alt="" className="w-16 bg-green-200 p-3 rounded-2xl"/>
