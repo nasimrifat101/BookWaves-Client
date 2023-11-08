@@ -4,6 +4,7 @@ import LoadingPage from "../ErrorPages/LoadingPage";
 import useAxiosNormal from "../../Hooks/useAxiosNormal";
 import { ToastContainer, toast } from "react-toastify";
 import SearchBar from "./Banners/SearchBar";
+import SwiperBanner from "./Banners/SwiperBanner";
 
 const AllBooks = () => {
   const [books, setBooks] = useState([]);
@@ -53,11 +54,13 @@ const AllBooks = () => {
         <LoadingPage></LoadingPage>
       ) : (
         <div className="max-w-6xl mx-auto">
+          <SwiperBanner></SwiperBanner>
           <SearchBar
             searchTerm={search}
             onSearchChange={setSearch}
             onFilterAvailableBooks={filterAvailableBooks}
           />
+          
           <div className=" grid lg:grid-cols-4 gap-4 p-3 lg:p-0">
             {filteredBooks.map((book) => (
               <AllBooksCard
