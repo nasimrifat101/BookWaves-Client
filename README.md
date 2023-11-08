@@ -16,6 +16,7 @@ BookWaves is a virtual book library where users can explore a wide range of book
 - **User Authentication:** Secure user authentication system allowing users to create accounts, log in, and log out.
 - **Admin Panel:** Administrators can manage the book inventory, add new books, update book details, and remove books from the library.
 - **Responsive Design:** The application is responsive and accessible across various devices, ensuring a consistent user experience.
+- **PDF Download:** The content/story of any book can be download as pdf document with a click of a button.
 
 ## Technologies Used
 
