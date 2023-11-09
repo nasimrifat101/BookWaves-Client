@@ -29,6 +29,16 @@ const Login = () => {
       });
   };
 
+  const handleGoogle = () => {
+    googleLogin()
+      .then(() => {
+        navigate('/');
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   return (
     <div>
       <div className="flex flex-col bg-white">
@@ -94,7 +104,7 @@ const Login = () => {
         </div>
         <div className="divider">OR</div>
         <div className="grid rounded-box place-items-center mb-5">
-          <button onClick={googleLogin} className="btn btn-outline rounded-full lg:w-96"><BsGoogle></BsGoogle>Google</button>
+          <button onClick={handleGoogle} className="btn btn-outline rounded-full lg:w-96"><BsGoogle></BsGoogle>Google</button>
         </div>
       </div>
       <ToastContainer></ToastContainer>

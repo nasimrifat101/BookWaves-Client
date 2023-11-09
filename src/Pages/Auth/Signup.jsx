@@ -65,6 +65,15 @@ const Signup = () => {
       setIsCreatingAccount(false);
     }
   };
+  const handleGoogle = () => {
+    googleLogin()
+      .then(() => {
+        navigate('/');
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   return (
     <div>
@@ -165,7 +174,7 @@ const Signup = () => {
             <div className="grid rounded-box place-items-center mb-5">
               <button
                 className="btn btn-outline lg:w-96 rounded-full"
-                onClick={googleLogin}
+                onClick={handleGoogle}
               >
                 <BsGoogle></BsGoogle>Google
               </button>
