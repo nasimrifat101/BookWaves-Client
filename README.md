@@ -7,6 +7,8 @@ BookWaves is a virtual book library where users can explore a wide range of book
 - Email : a@gmail.com
 - Password : A@123456
 
+Login with admin credentials for Updating Deleting and Adding Book.
+
 ## Features
 
 - **Browse Books:** Explore an extensive collection of books sorted by categories.
@@ -27,6 +29,7 @@ BookWaves is a virtual book library where users can explore a wide range of book
   - React Rating: Component for displaying star ratings.
   - Firebase: Cloud-based platform for hosting images and handling user authentication.
   - Tailwind CSS: CSS framework for responsive and customizable UI components.
+  - Swiper Js: React Framework responsive and customizable Banner components.
 
 - **Backend:**
   - Node.js: JavaScript runtime environment for building server-side applications.

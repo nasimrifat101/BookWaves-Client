@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import Rating from "react-rating";
 import { Link } from "react-router-dom";
 import useAuth from "../../../Hooks/useAuth";
@@ -5,7 +6,7 @@ import PropTypes from 'prop-types';
 
 const BooksCard = ({ book }) => {
   const {user} = useAuth()
-  const { _id, image, name, rating, author, category } = book;
+  const { _id, image, name, rating, author, category, } = book;
   return (
     <div>
       <div className="card card-compact hover:shadow-xl border">
@@ -30,12 +31,16 @@ const BooksCard = ({ book }) => {
             <p className="text-right mt-2 font-semibold">{rating}</p>
           </div>
           <div className="card-actions justify-end">
-            <Link
-              to={`/bookdetails/${_id}`}
-              className="btn bg-accent w-full border-none hover:text-white hover:bg-black"
-            >
-              Details
-            </Link>
+          {book.quantity < 1 ? (
+              <Link className="btn btn-disabled w-full">Not Available</Link>
+            ) : (
+              <Link
+                to={`/bookdetails/${_id}`}
+                className="btn bg-accent w-full hover:text-white hover:bg-black"
+              >
+                Details
+              </Link>
+            )}
             {
               user && user.email === 'a@gmail.com' &&
               <Link
